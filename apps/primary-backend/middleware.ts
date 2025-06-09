@@ -21,7 +21,7 @@ export function authMiddleware(
     return;
   }
 
-  const userId = (decoded as any).payload.sub;
+  const userId = (decoded as any).sub;
 
   if (!userId) {
     res.status(401).json({ error: "Unauthorized" });

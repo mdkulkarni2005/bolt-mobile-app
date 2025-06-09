@@ -29,7 +29,7 @@ app.get("/projects", authMiddleware, async (req, res) => {
     res.json({ projects });
 })
 
-app.listen(8080, () => {
-  console.log("Server is running on port 3000");
+app.listen(9090, () => {
+  console.log("Server is running on port 9090");
 })
 

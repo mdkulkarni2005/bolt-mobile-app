@@ -1,15 +1,48 @@
-# db
+# Database Package (`db`)
 
-To install dependencies:
+This package provides database utilities and Prisma ORM setup for the Bolt Mobile App monorepo.
+
+---
+
+## Usage
+
+Import and use in backend or worker apps for database access:
+
+```ts
+import { prisma } from '@bolt/db';
+```
+
+---
+
+## Setup
+
+### Install Dependencies
 
 ```bash
 bun install
 ```
 
-To run:
+### Migrations
+
+Edit `prisma/schema.prisma` and run:
 
 ```bash
-bun run index.ts
+bunx prisma migrate dev
 ```
 
-This project was created using `bun init` in bun v1.2.10. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+---
+
+## Environment Variables
+
+Copy `.env.example` to `.env` and set your database connection string.
+
+---
+
+## About
+
+- Part of the [Bolt Mobile App Monorepo](https://github.com/mdkulkarni2005/bolt-mobile-app)
+- Maintained by [Manas Kulkarni](https://github.com/mdkulkarni2005)
+
+---
+
+*Feel free to contribute or open issues!*

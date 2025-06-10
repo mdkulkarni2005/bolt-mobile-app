@@ -39,6 +39,15 @@ app.get("/prompts/:projectId ", authMiddleware, async (req, res) => {
   res.json({ prompts });
 });
 
+app.get("/actions/:projectId ", authMiddleware, async (req, res) => {
+  const userId = req.userId!;
+  const projectId = req.params.projectId;
+  const actions = await prismaClient.action.findMany({
+    where: { projectId },
+  });
+  res.json({ actions });
+});
+
 app.listen(9090, () => {
   console.log("Server is running on port 9090");
 });

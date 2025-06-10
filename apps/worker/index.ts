@@ -5,6 +5,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { systemPrompt } from "./systemPrompt";
 import { ArtifactProcessor } from "./parser";
 import { onFileUpdate, onShellCommand } from "./os";
+import { file } from "bun";
 
 const app = express();
 app.use(cors());
@@ -33,8 +34,8 @@ app.post("/prompt", async (req, res) => {
 
   let artifactProcessor = new ArtifactProcessor(
     "",
-    onFileUpdate,
-    onShellCommand
+    (filePath, fileContent) => onFileUpdate(filePath, fileContent, projectId),
+    (shellCommand) => onShellCommand(shellCommand, projectId)
   );
   let artifact = "";
 
@@ -62,7 +63,14 @@ app.post("/prompt", async (req, res) => {
           type: "SYSTEM",
         },
       });
-    })
+
+    await prismaClient.action.create({
+      data: {
+        projectId,
+        content: "Done!"
+      },
+    });
+  })
 
     .on("error", (error) => {
       console.log("error", error);

@@ -5,36 +5,35 @@ import { get } from "http";
 import { type } from "os";
 import { useEffect, useState } from "react";
 
-interface Prompt {
+interface Action {
   id: string;
   content: string;
-  type: "USER" | "SYSTEM";
   createdAt: Date;
 }
 
-export function usePrompts(projectId: string) {
-  const [prompts, setPrompts] = useState<Prompt[]>([]);
+export function useActions(projectId: string) {
+  const [actions, setactions] = useState<Action[]>([]);
   const { getToken } = useAuth();
 
   useEffect(() => {
-    async function getPrompts() {
+    async function getactions() {
       const token = await getToken();
       axios
-        .get(`${BACKEND_URL}/prompts/${projectId}`, {
+        .get(`${BACKEND_URL}/actions/${projectId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         })
         .then((res) => {
-          setPrompts(res.data.prompts);
+          setactions(res.data.actions);
         });
     }
-    getPrompts();
-    let interval = setInterval(getPrompts, 1000);
+    getactions();
+    let interval = setInterval(getactions, 1000);
     return () => clearInterval(interval);
   }, []);
 
   return {
-    prompts,
+    actions,
   };
 }

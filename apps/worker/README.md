@@ -1,37 +1,15 @@
-# Worker App (Bun)
+# worker
 
-This is the **worker** for the Bolt Mobile App monorepo.
-It runs background jobs and async processing using [Bun](https://bun.sh).
-
----
-
-## Getting Started
-
-### Install Dependencies
+To install dependencies:
 
 ```bash
 bun install
 ```
 
-### Development
+To run:
 
 ```bash
 bun run index.ts
 ```
 
----
-
-## Environment Variables
-
-Copy `.env.example` to `.env` and fill in required values.
-
----
-
-## About
-
-- Part of the [Bolt Mobile App Monorepo](https://github.com/mdkulkarni2005/bolt-mobile-app)
-- Maintained by [Manas Kulkarni](https://github.com/mdkulkarni2005)
-
----
-
-*Feel free to contribute or open issues!*
+This project was created using `bun init` in bun v1.2.10. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
